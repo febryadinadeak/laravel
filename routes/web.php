@@ -11,6 +11,27 @@
 |
 */
 
-Route::get('/', function () {
-    return view ('welcome');
+Route::get('/index', function () {
+echo "<a href='".route('create')."'>Akses Route dengan nama </a>";
 });
+
+Route::get('/create', function () {
+echo "Route diakses menggunakan nama";
+})->name('create');
+
+Route::get('/produk', 'produkController@index');
+
+Route::any('/welcome', function () {});
+	
+Route::get('/produk/show', 'produkController@show');
+
+Route::get('/halaman',function(){
+$title = 'Harry Pooter';
+$konten = 'harry potter and the deathly hallows: part 2';
+return view('konten.halaman',compact('title','konten'));
+});
+
+Route::get('/pelanggan', 'pelangganController@index');
+
+Route::resource('produk','produkController');
+?>
